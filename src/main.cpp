@@ -31,7 +31,7 @@ int main(int, char**)
         return 0;
     }
 
-   IMGUI_CHECKVERSION();
+    IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
 
@@ -47,7 +47,7 @@ int main(int, char**)
     bool done = false;
     while (!done)
     {
-       SDL_Event event;
+        SDL_Event event;
         while (SDL_PollEvent(&event))
         {
             ImGui_ImplSDL2_ProcessEvent(&event);
@@ -65,41 +65,6 @@ int main(int, char**)
         ImGui_ImplSDLRenderer2_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
-
-        if (show_demo_window)
-            ImGui::ShowDemoWindow(&show_demo_window);
-        
-        {
-            static float f = 0.0f;
-            static int counter = 0;
-
-            ImGui::Begin("Hello, world!");                          
-
-            ImGui::Text("This is some useful text.");               
-            ImGui::Checkbox("Demo Window", &show_demo_window);      
-            ImGui::Checkbox("Another Window", &show_another_window);
-
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            
-            ImGui::ColorEdit3("clear color", (float*)&clear_color); 
-
-            if (ImGui::Button("Button"))                             
-              counter++;
-            
-            ImGui::SameLine();
-            ImGui::Text("counter = %d", counter);
-
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-            ImGui::End();
-        }
-
-        if (show_another_window)
-        {
-            ImGui::Begin("Another Window", &show_another_window); 
-            ImGui::Text("Hello from another window!");
-            if (ImGui::Button("Close Me"))
-                show_another_window = false;
-            ImGui::End();
-        }
 
         ImGui::Render();
         SDL_RenderSetScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
@@ -119,4 +84,3 @@ int main(int, char**)
 
     return 0;
 }
-
